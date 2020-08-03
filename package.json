@@ -1,0 +1,19 @@
+{
+  "name": "lineup",
+  "version": "1.0.0",
+  "description": "simple todo list application",
+  "main": "index.js",
+  "scripts": {
+    "start":"nodemon index.js", 
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "todoList"
+  ],
+  "author": "RiyaAgarwal",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.3",
+    "express": "^4.17.1"
+  }
+}
