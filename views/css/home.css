@@ -22,7 +22,7 @@
     display:flex;
     flex-direction:column;
 }
-.ul{
+/* .ul{
     padding-top:20%;
     list-style-type: none;
     margin-left:0;
@@ -48,7 +48,7 @@
 .addlist{
     color:rgb(83, 83, 83);
     padding-top:7%;
-}
+} */
 span{
     margin-left:2%;
 }
@@ -60,7 +60,7 @@ span{
     color:black;
 }
 .task{
-    background-color:white;
+    background-color:rgba(255, 255, 255, 90%);
     width:100%;
     font-size:1.3rem;
     margin:1%;
@@ -76,25 +76,32 @@ span{
 }
 .btn{
     padding:1%;
-    background:linear-gradient(to top, white, slategrey);
+    color:rgb(255, 255, 255);
+    background-color:rgb(117, 117, 117);
+    box-shadow:0 0 15px rgb(0, 0, 0);
+    width:80%;
+    height:10%;
     border:none;
+    border-radius:10px;
+    font-size:1.1rem;
 }
 .input{
     border:none;
     margin-right:10%;
     border-bottom:1px solid slategrey;
-    color:white;
+    color:rgb(0, 0, 0);
     background:transparent;
     width:30%;
+    font-size:1.2rem;
     padding:1%;
 }
 .input::placeholder {
-    color: white;
+    color: rgb(0, 0, 0);
     opacity: 1;
 }
 #date::-webkit-calendar-picker-indicator {
     background: url('../images/calender.png') center/80% no-repeat;
-    color: white;
+    color: rgb(0, 0, 0);
     opacity: 1;
 }
 #date::-webkit-calendar-picker-indicator:hover {
@@ -110,7 +117,12 @@ span{
     right:5%;
 }
 .color-red{
-    color:red;
+    background-color:white;
+    font-weight: bold;
+    box-shadow: 0 0 2px white;
+}
+.biggerfontsize{
+    font-size:1.2rem;
 }
 .logo{
     height:auto;
@@ -125,6 +137,7 @@ span{
     margin:5%;
     justify-content: space-between;
     align-items: center;
+    height:10%;
 }
 .name{
     font-family: sans-serif;
@@ -145,14 +158,24 @@ span{
 .addtask{
     border:0.8px solid white;
     padding:1%;
-    background-color:rgba(0,0,0,60%);
+    /* background:linear-gradient(to bottom,white,rgb(163, 162, 162)); */
+    background-color:white;
+    box-sizing:border-box;
+    margin-top:15%;
 }
-.addtask h3{
-    margin:1%;
+.addtask h2{
+    margin:3%;
     padding:0;
+    font-family:sans-serif;
 }
 .addtask form{
     display:flex;
+    flex-direction:column;
     justify-content:space-around;
-    align-content:center;
+    align-items:center;
+    height:65%;
+}
+.addtask form input{
+    width:90%;
+    margin:5%;
 }

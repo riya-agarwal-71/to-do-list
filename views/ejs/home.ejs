@@ -10,7 +10,15 @@
                 <img class = "logo" src = "../images/lineup-logo.png" alt = "Lineup - logo">
                 <div class = "name">LINEUP<span class = "des">Manage your day with ease!</span></div>
             </div>
-            <ul class = "ul">
+            <div class = "addtask">
+                <h2>Add A Task</h2>
+                <form action = "/additem" method = "POST">
+                    <input class = "input" type = "text" name = "todo" id = "description" placeholder = "Description" required>
+                    <input class = "input" type = "date" name = "date" id = "date" placeholder = "Due Date" required>
+                    <button type = "submit" class = "btn">Add Task</button>
+                </form>
+            </div>
+            <!-- <ul class = "ul">
                 <li>
                     <i class="far fa-calendar"></i>
                     <span>Planned</span>
@@ -33,36 +41,54 @@
                         </li>
                     </ul>
                 </li>
-            </ul>
+            </ul> -->
         </div>
         <div class = "main">
-            <h1 class = "heading">
+            <!-- <h1 class = "heading">
                 <i class="far fa-calendar"></i>
                 <span>Planned</span>
-            </h1>
-            <div class = "addtask">
-                <h3>Add A Task</h3>
-                <form action="">
-                    <input class = "input" type = "text" name = "todo" id = "description" placeholder = "Description">
-                    <input class = "input" type = "date" name = "date" id = "date" placeholder = "Due Date">
-                    <button type = "submit" class = "btn">Add Task</button>
-                </form>
-            </div>
+            </h1> -->
             <ul class = "taskslist">
-                <li class = "task" id = "one">
-                    <i class="far fa-check-square"></i>
-                    &nbsp;
-                    <span>task 1</span>
-                    <span class = "date">07-10-2020</span>
-                </li>
-                <li class = "task" id = "two">
-                    <i class="far fa-square"></i>
-                    &nbsp;
-                    <span>task 2</span>
-                    <span class = "date">03-08-2020</span>
-                </li>
+                <% var today = new Date(); %>
+                <% var dd = today.getDate(); %>
+                <% var mm = today.getMonth()+1; %>
+                <% var yyyy = today.getFullYear(); %>
+                <% if(dd < 10){ %>
+                    <% dd = '0'+dd %>
+                <% } %> 
+                <% if(mm<10){ %>
+                    <% mm = '0'+mm %>
+                <% } %>
+                <% today = dd + '-' + mm + '-' + yyyy %>
+                <%function reformatDate(dateStr){ %>
+                  <% dArr = dateStr.split("-") %>
+                  <% return dArr[2]+ "-" +dArr[1]+ "-" +dArr[0] %>
+                <% } %>
+                <% for(let i = 0 ; i < task.length ; i++){ %>
+                    <% if(task[i].date == today){ %>
+                        <li class = "task color-red">
+                            <i class="far fa-square"></i>
+                            <span><%= task[i].description %></span>
+                            <span class = "date biggerfontsize">TODAY</span>
+                        </li>
+                    <% }else if(new Date(reformatDate(task[i].date)) < new Date()){ %>
+                        <li class = "task">
+                            <i class="far fa-square"></i>
+                            <span><%= task[i].description %></span>
+                            <span style = "font-family: sans-serif; color:red">DUE DATE PASSED</span>
+                            <span class = "date"><%= task[i].date %></span>
+                        </li>
+                    <% }else{ %>
+                        <li class = "task">
+                            <i class="far fa-square"></i>
+                            <span><%= task[i].description %></span>
+                            <span class = "date"><%= task[i].date %></span>
+                        </li>
+                    <% } %>
+                <% } %>
             </ul>
         </div>
+        <script src = "../js/jquery.js"></script>
         <script src = "../js/home.js"></script>
     </body>
 </html>
