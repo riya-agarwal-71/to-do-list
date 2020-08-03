@@ -5,7 +5,7 @@ const app = express();
 
 app.use("/",require('./routes/index'));
 app.use(express.static('./views'));
-app.use(favicon('./images/favicon.ico'));
+app.use(favicon('./views/images/favicon.ico'));
 
 app.set('view engine','ejs');
 app.set('views','./views');

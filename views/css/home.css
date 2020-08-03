@@ -1,4 +1,158 @@
-body{
-    background-color: midnightblue;
+.container{
+    margin:0;
+    display:flex;
+}
+.sidebar{
+    height:100%;
+    width:30%;
+    background-color:white;
+}
+.main{
+    box-sizing:border-box;
+    height:100%;
+    width:70%;
+    background-image:url('../images/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
     color:white;
+    background-color: rgba(255,255,255,10%);
+    background-blend-mode: lighten;
+    padding:3%;
+    font-family: sans-serif;
+    display:flex;
+    flex-direction:column;
+}
+.ul{
+    padding-top:20%;
+    list-style-type: none;
+    margin-left:0;
+    size:1.4rem;
+    height:auto;
+    color:rgb(48, 48, 48);
+    font-family: sans-serif;
+}
+.ul li{
+    margin-bottom:6%;
+    border-bottom:1px solid slategray;
+    font-size:1.4rem;
+    padding-bottom:2%;
+    margin-right:5%
+}
+.lists{
+    padding-top:3%;
+}
+.lists li{
+    margin-bottom:1%;
+    border-bottom:none;
+}
+.addlist{
+    color:rgb(83, 83, 83);
+    padding-top:7%;
+}
+span{
+    margin-left:2%;
+}
+.heading{
+    margin-bottom:2%;
+}
+.taskslist{
+    list-style-type: none;
+    color:black;
+}
+.task{
+    background-color:white;
+    width:100%;
+    font-size:1.3rem;
+    margin:1%;
+    padding:2%;
+    box-sizing:border-box;
+    border-radius:10px;
+    margin-left:0;
+}
+.task span{
+    display:inline-block;
+    padding-left:0;
+    width:auto;
+}
+.btn{
+    padding:1%;
+    background:linear-gradient(to top, white, slategrey);
+    border:none;
+}
+.input{
+    border:none;
+    margin-right:10%;
+    border-bottom:1px solid slategrey;
+    color:white;
+    background:transparent;
+    width:30%;
+    padding:1%;
+}
+.input::placeholder {
+    color: white;
+    opacity: 1;
+}
+#date::-webkit-calendar-picker-indicator {
+    background: url('../images/calender.png') center/80% no-repeat;
+    color: white;
+    opacity: 1;
+}
+#date::-webkit-calendar-picker-indicator:hover {
+    background: url('../images/calender.png') center/80% no-repeat;
+    opacity: 0.8
+}
+.date{
+    display:inline-block;
+    font-size:1rem;
+    width:auto;
+    color:rgb(54, 54, 54);
+    position:absolute;
+    right:5%;
+}
+.color-red{
+    color:red;
+}
+.logo{
+    height:auto;
+    width:20%;
+    object-fit: contain;
+    border-radius:15px;
+}
+.app-name{
+    width:100%;
+    height:auto;
+    display:flex;
+    margin:5%;
+    justify-content: space-between;
+    align-items: center;
+}
+.name{
+    font-family: sans-serif;
+    width:80%;
+    height:100%;
+    display:flex;
+    flex-wrap: wrap;
+    margin:5%;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+.des{
+    font-size:1.2rem;
+    margin:0;
+    font-weight:lighter;
+    color:rgb(107, 107, 107);
+}
+.addtask{
+    border:0.8px solid white;
+    padding:1%;
+    background-color:rgba(0,0,0,60%);
+}
+.addtask h3{
+    margin:1%;
+    padding:0;
+}
+.addtask form{
+    display:flex;
+    justify-content:space-around;
+    align-content:center;
 }

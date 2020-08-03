@@ -1,10 +1,68 @@
 <html>
     <head>
         <title>Lineup - manage your day with ease</title>
+        <script src="https://kit.fontawesome.com/bfa3d275f1.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="../css/home.css">
     </head>
-    <body>
-        <h1>HEY</h1>
+    <body class = "container">
+        <div class = "sidebar">
+            <div class = "app-name">
+                <img class = "logo" src = "../images/lineup-logo.png" alt = "Lineup - logo">
+                <div class = "name">LINEUP<span class = "des">Manage your day with ease!</span></div>
+            </div>
+            <ul class = "ul">
+                <li>
+                    <i class="far fa-calendar"></i>
+                    <span>Planned</span>
+                </li>
+                <li>
+                    <i class = "fas fa-clipboard-list"></i>
+                    <span>LISTS</span>
+                    <ul class = "ul lists">
+                        <li>
+                            <i class="fas fa-list-ul"></i>
+                            <span>List 1</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-list-ul"></i>
+                            <span>List 2</span>
+                        </li>
+                        <li class = "addlist">
+                            <i class="fas fa-plus"></i>
+                            <span>Add a list</span>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class = "main">
+            <h1 class = "heading">
+                <i class="far fa-calendar"></i>
+                <span>Planned</span>
+            </h1>
+            <div class = "addtask">
+                <h3>Add A Task</h3>
+                <form action="">
+                    <input class = "input" type = "text" name = "todo" id = "description" placeholder = "Description">
+                    <input class = "input" type = "date" name = "date" id = "date" placeholder = "Due Date">
+                    <button type = "submit" class = "btn">Add Task</button>
+                </form>
+            </div>
+            <ul class = "taskslist">
+                <li class = "task" id = "one">
+                    <i class="far fa-check-square"></i>
+                    &nbsp;
+                    <span>task 1</span>
+                    <span class = "date">07-10-2020</span>
+                </li>
+                <li class = "task" id = "two">
+                    <i class="far fa-square"></i>
+                    &nbsp;
+                    <span>task 2</span>
+                    <span class = "date">03-08-2020</span>
+                </li>
+            </ul>
+        </div>
         <script src = "../js/home.js"></script>
     </body>
 </html>
