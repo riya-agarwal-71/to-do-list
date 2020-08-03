@@ -1,9 +1,12 @@
 const express = require("express");
 const port = 8000;
-
+const favicon = require('serve-favicon');
 const app = express();
 
 app.use("/",require('./routes/index'));
+app.use(express.static('./views'));
+app.use(favicon('./images/favicon.ico'));
+
 app.set('view engine','ejs');
 app.set('views','./views');
 
