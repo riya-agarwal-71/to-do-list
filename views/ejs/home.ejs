@@ -1,15 +1,26 @@
 <html>
     <head>
         <title>Lineup - manage your day with ease</title>
+        <!-------------- INCLUDING FONT AWESOME --------------->
         <script src="https://kit.fontawesome.com/bfa3d275f1.js" crossorigin="anonymous"></script>
+        <!---------------- INCLUDING MY CSS FILE ------------------>
         <link rel="stylesheet" href="../css/home.css">
     </head>
     <body class = "container">
+
+        <!---------------------- LEFT SIDE ------------------------->
+
         <div class = "sidebar">
+
+            <!------------------- APP NAME AND LOGO --------------------->
+
             <div class = "app-name">
                 <img class = "logo" src = "../images/lineup-logo.png" alt = "Lineup - logo">
                 <div class = "name">LINEUP<span class = "des">Manage your day with ease!</span></div>
             </div>
+
+            <!---------------- ADD NEW TASK FORM ------------------->
+            
             <div class = "addtask">
                 <h2>Add A Task</h2>
                 <form action = "/additem" method = "POST">
@@ -29,8 +40,14 @@
                 </form>
             </div>
         </div>
+
+        <!------------------- RIGHT SIDE (AREA IN WHICH TASKS ARE DISPLAYED) ------------------------>
+
         <div class = "main">
             <ul class = "taskslist">
+
+                <!---------- GETTING TODAYS DATE ------------>
+
                 <% var today = new Date(); %>
                 <% var dd = today.getDate(); %>
                 <% var mm = today.getMonth()+1; %>
@@ -42,6 +59,9 @@
                     <% mm = '0'+mm %>
                 <% } %>
                 <% today = dd + '-' + mm + '-' + yyyy %>
+
+                <!---------------- TRANSFORM DATE TO YYYY-MM-DD FROM DD-MM-YYYY ------------------->
+
                 <%function reformatDate(dateStr){ %>
                   <% dArr = dateStr.split("-") %>
                   <% return dArr[2]+ "-" +dArr[1]+ "-" +dArr[0] %>
@@ -50,20 +70,26 @@
                     <% if(task[i].date == "undefined-undefined-") { %>
                         <% task[i].date = "no due date" %>    
                     <% } %>
+
+                    <!------------------ IF TASK DATE IS TODAY ----------------------->
+
                     <% if(task[i].date == today){ %>
                         <li class = "task color-red" data-id = "<%= task[i]._id %>">
                             <i class="far fa-square"></i>
-                            <span><%= task[i].description %></span>
+                            <span class = "description"><%= task[i].description %></span>
                             <%if(task[i].category!="Select Category"){ %>
                                 <div class = "category <%= task[i].category %>"><%= task[i].category %></div>
                             <% }%>
                             <br>
                             <span class = "date biggerfontsize">TODAY</span>
                         </li>
+
+                    <!-------------------- IF TASK DATE IS ANYTIME BEFORE TODAY --------------------->
+                    
                     <% }else if(task[i].date != "no due date" && new Date(reformatDate(task[i].date)) < new Date()){ %>
                         <li class = "task" data-id = "<%= task[i]._id %>">
                             <i class="far fa-square"></i>
-                            <span><%= task[i].description %></span>
+                            <span class = "description"><%= task[i].description %></span>
                             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                             <span style = "font-family: sans-serif; color:red">DUE DATE PASSED</span>
                             <%if(task[i].category!="Select Category"){ %>
@@ -72,10 +98,13 @@
                             <br>
                             <span class = "date"><i class="fas fa-calendar-day"></i>&nbsp;&nbsp;<%= task[i].date %></span>
                         </li>
+
+                    <!---------------------- IF TASK DATE IS AFTER TODAY ------------------------>
+
                     <% }else{ %>
                         <li class = "task" data-id = "<%= task[i]._id %>">
                             <i class="far fa-square"></i>
-                            <span><%= task[i].description %></span>
+                            <span class = "description"><%= task[i].description %></span>
                             <% if(task[i].category!="Select Category"){ %>
                                 <div class = "category <%= task[i].category %>"><%= task[i].category %></div>
                             <% } %>
@@ -86,7 +115,9 @@
                 <% } %>
             </ul>
         </div>
+        <!------------------ INCLUDING J-QUERY FILE ---------------------->
         <script src = "../js/jquery.js"></script>
+        <!----------------- INCLUDING MY JAVASCRIPT FILE -------------------->
         <script src = "../js/home.js"></script>
     </body>
 </html>

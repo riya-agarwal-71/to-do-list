@@ -1,13 +1,121 @@
+/***************** CLASSES FOR BODY TAG (CONTAINER CLASS) *********************/
 .container{
     margin:0;
     display:flex;
     background-color:black;
 }
+/********************** LEFT SIDE ************************/
 .sidebar{
     height:100%;
     width:30%;
     background-color:white;
 }
+/************* APP NAME AND LOGO ****************/
+.app-name{
+    width:100%;
+    height:auto;
+    display:flex;
+    margin:5%;
+    justify-content: space-between;
+    align-items: center;
+    height:10%;
+}
+.name{
+    font-family: sans-serif;
+    width:80%;
+    height:100%;
+    display:flex;
+    flex-wrap: wrap;
+    margin:5%;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+.logo{
+    height:auto;
+    width:20%;
+    object-fit: contain;
+    border-radius:15px;
+}
+.des{
+    font-size:1.2rem;
+    font-weight:lighter;
+    color:rgb(107, 107, 107);
+}
+/************* ADD NEW TASK FORM ****************/
+.btn{
+    padding:1%;
+    color:rgb(255, 255, 255);
+    background-color:rgb(117, 117, 117);
+    box-shadow:0 0 15px rgb(0, 0, 0);
+    width:80%;
+    height:10%;
+    border:none;
+    border-radius:10px;
+    font-size:1.1rem;
+}
+.input::placeholder {
+    color: rgb(0, 0, 0);
+    opacity: 1;
+}
+.date::-webkit-calendar-picker-indicator {
+    background: url('../images/calender.png') center/80% no-repeat;
+    color: rgb(0, 0, 0);
+    opacity: 1;
+}
+.date::-webkit-calendar-picker-indicator:hover {
+    background: url('../images/calender.png') center/80% no-repeat;
+    opacity: 0.8;
+}
+.date{
+    display:inline-block;
+    font-size:1rem;
+    width:auto;
+    color:rgb(54, 54, 54);
+    position:absolute;
+    left:5%;
+    top:60%;
+}
+.addtask{
+    border:0.8px solid white;
+    padding:1%;
+    background-color:white;
+    box-sizing:border-box;
+    margin-top:15%;
+}
+.addtask h2{
+    margin:3%;
+    padding:0;
+    font-family:sans-serif;
+}
+.addtask form{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-around;
+    align-items:center;
+    height:65%;
+}
+.input{
+    width:90%;
+    margin:5%;
+    border:none;
+    margin-right:10%;
+    border-bottom:1px solid slategrey;
+    color:rgb(0, 0, 0);
+    background:transparent;
+    font-size:1rem;
+    padding:1%;
+}
+.addtask form fieldset{
+    width:90%;
+    margin:5%;
+    height:10%;
+}
+#myList{
+    width:100%;
+    height:100%;
+    border:none;
+}
+/************ RIGHT SIDE (AREA WHERE THE TASKS ARE VISIBLE) ****************/
 .main{
     margin-right:10px;
     box-sizing:border-box;
@@ -37,12 +145,7 @@
 .main::-webkit-scrollbar-thumb:hover {
     background: rgb(63, 63, 63); 
 }
-span{
-    margin-left:2%;
-}
-.heading{
-    margin-bottom:2%;
-}
+/************ TASK CLASSES ***************/
 .taskslist{
     list-style-type: none;
     color:black;
@@ -63,117 +166,18 @@ span{
     display:inline-block;
     padding-left:0;
     width:auto;
+    margin-left:2%;
 }
-.btn{
-    padding:1%;
-    color:rgb(255, 255, 255);
-    background-color:rgb(117, 117, 117);
-    box-shadow:0 0 15px rgb(0, 0, 0);
-    width:80%;
-    height:10%;
-    border:none;
-    border-radius:10px;
-    font-size:1.1rem;
-}
-.input{
-    border:none;
-    margin-right:10%;
-    border-bottom:1px solid slategrey;
-    color:rgb(0, 0, 0);
-    background:transparent;
-    width:30%;
-    font-size:1.2rem;
-    padding:1%;
-}
-.input::placeholder {
-    color: rgb(0, 0, 0);
-    opacity: 1;
-}
-#date::-webkit-calendar-picker-indicator {
-    background: url('../images/calender.png') center/80% no-repeat;
-    color: rgb(0, 0, 0);
-    opacity: 1;
-}
-#date::-webkit-calendar-picker-indicator:hover {
-    background: url('../images/calender.png') center/80% no-repeat;
-    opacity: 0.8
-}
-.date{
-    display:inline-block;
-    font-size:1rem;
-    width:auto;
-    color:rgb(54, 54, 54);
+.description{
     position:absolute;
-    left:5%;
-    top:60%;
-}
-.color-red{
-    background-color:white;
-    font-weight: bold;
-    box-shadow: 0 0 2px white;
-}
-.biggerfontsize{
-    font-size:1.2rem;
-}
-.logo{
-    height:auto;
-    width:20%;
-    object-fit: contain;
-    border-radius:15px;
-}
-.app-name{
-    width:100%;
-    height:auto;
+    width:75%;
+    height:1.5rem;
+    /* for a long task only one line will be visible */
+    overflow:hidden; 
     display:flex;
-    margin:5%;
-    justify-content: space-between;
-    align-items: center;
-    height:10%;
+    flex-wrap:nowrap;
 }
-.name{
-    font-family: sans-serif;
-    width:80%;
-    height:100%;
-    display:flex;
-    flex-wrap: wrap;
-    margin:5%;
-    font-size: 1.6rem;
-    font-weight: bold;
-}
-.des{
-    font-size:1.2rem;
-    margin:0;
-    font-weight:lighter;
-    color:rgb(107, 107, 107);
-}
-.addtask{
-    border:0.8px solid white;
-    padding:1%;
-    background-color:white;
-    box-sizing:border-box;
-    margin-top:15%;
-}
-.addtask h2{
-    margin:3%;
-    padding:0;
-    font-family:sans-serif;
-}
-.addtask form{
-    display:flex;
-    flex-direction:column;
-    justify-content:space-around;
-    align-items:center;
-    height:65%;
-}
-.addtask form input{
-    width:90%;
-    margin:5%;
-}
-.addtask form fieldset{
-    width:90%;
-    margin:5%;
-    height:10%;
-}
+/************ CLASSES FOR DIFFERENT CATEGORIES *****************/
 .category{
     display:inline-block;
     background-color:red;
@@ -189,11 +193,6 @@ span{
     box-sizing:border-box;
     top:25%;
 }
-#myList{
-    width:100%;
-    height:100%;
-    border:none;
-}
 .Cleaning{
     background-color:mediumpurple;
 }
@@ -208,4 +207,13 @@ span{
 }
 .Other{
     background-color:grey;
+}
+/*************** CLASSES FOR TASK TODAY ******************/
+.color-red{
+    background-color:white;
+    font-weight: bold;
+    box-shadow: 0 0 2px white;
+}
+.biggerfontsize{
+    font-size:1.2rem;
 }

@@ -1,10 +1,14 @@
+// importing the database
 const db = require('../config/mongoose');
 const Task = require('../models/task');
 
+// formating date from yyyy-mm-dd format to dd-mm-yyyy format
 function reformatDate(dateStr){
   dArr = dateStr.split("-");
   return dArr[2]+ "-" +dArr[1]+ "-" +dArr[0];
 }
+
+// exporting home (/) controller
 module.exports.home = function(req,res){
     Task.find({},function(error,tasks){
         if(error){
@@ -16,6 +20,8 @@ module.exports.home = function(req,res){
         })
     })
 }
+
+// exporting add items controller
 module.exports.additem = function(req,res){
     Task.create({
         description:req.body.todo,
@@ -27,8 +33,10 @@ module.exports.additem = function(req,res){
             return;
         }
         return res.redirect('back');
-    })
+    });
 }
+
+// exporting delete items controller
 module.exports.deleteitem = function(req,res){
     let id = req.query.id;
     Task.findByIdAndDelete(id,function(error){
