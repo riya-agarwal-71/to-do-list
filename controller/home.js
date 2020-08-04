@@ -1,39 +1,41 @@
-var task = [
-    {
-        description:"task 1",
-        date:"10-10-2020",
-        category:"Personal"
-    },
-    {
-        description:"task 2",
-        date:"03-08-2020",
-        category:"Work"
-    },
-    {
-        description:"task 3",
-        date : "04-08-2020",
-        category:"Cleaning"
-    }
-]
-function reformatDate(dateStr)
-{
+const db = require('../config/mongoose');
+const Task = require('../models/task');
+
+function reformatDate(dateStr){
   dArr = dateStr.split("-");
   return dArr[2]+ "-" +dArr[1]+ "-" +dArr[0];
 }
-task.sort(function(a,b){
-    return new Date(reformatDate(a.date))-new Date(reformatDate(b.date));
-})
 module.exports.home = function(req,res){
-    return res.render("../views/ejs/home.ejs",{
-        task:task
-    });
+    Task.find({},function(error,tasks){
+        if(error){
+            console.log("Error in fetching tasks from db");
+            return;
+        }
+        return res.render("../views/ejs/home.ejs",{
+            task: tasks
+        })
+    })
 }
 module.exports.additem = function(req,res){
-    task.push({
+    Task.create({
         description:req.body.todo,
         date:reformatDate(req.body.date),
         category:req.body.category
+    },function(error,newTask){
+        if(error){
+            console.log("error in creating a task");
+            return;
+        }
+        return res.redirect('back');
     })
-    console.log(reformatDate(req.body.date));
-    return res.redirect('back');
+}
+module.exports.deleteitem = function(req,res){
+    let id = req.query.id;
+    Task.findByIdAndDelete(id,function(error){
+        if(error){
+            console.log("error in deleting the task");
+            return;
+        }
+        return res.redirect('back');
+    });
 }

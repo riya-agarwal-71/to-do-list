@@ -19,14 +19,20 @@ for(let i = 0 ; i < task.length ; i++){
         itag.classList.toggle("fa-check-square");
         itag.classList.toggle("fa-square");
         var opacity = 100;
+        let allchildren = task[i].children
+        for(let i = 1 ; i < allchildren.length ; i++){
+            console.log(allchildren[i]);
+            allchildren[i].style.textDecoration = "line-through";
+        }
         var int = setInterval(function(){
             if(opacity <= 0){
                 task[i].style.display = "none";
+                window.location.href = "/deletetask/?id=" + task[i].getAttribute("data-id");
                 clearInterval(int);
                 return;
             }
             task[i].style.opacity = opacity + '%';
             opacity = opacity - 1;
-        },10)
+        },12)
     })
 }
