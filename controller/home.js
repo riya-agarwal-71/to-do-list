@@ -1,16 +1,19 @@
 var task = [
     {
         description:"task 1",
-        date:"10-10-2020"
+        date:"10-10-2020",
+        category:"Personal"
     },
     {
         description:"task 2",
-        date:"03-08-2020"
+        date:"03-08-2020",
+        category:"Work"
     },
     {
         description:"task 3",
-        date : "04-08-2020"
-    },
+        date : "04-08-2020",
+        category:"Cleaning"
+    }
 ]
 function reformatDate(dateStr)
 {
@@ -28,7 +31,9 @@ module.exports.home = function(req,res){
 module.exports.additem = function(req,res){
     task.push({
         description:req.body.todo,
-        date:reformatDate(req.body.date)
+        date:reformatDate(req.body.date),
+        category:req.body.category
     })
+    console.log(reformatDate(req.body.date));
     return res.redirect('back');
 }

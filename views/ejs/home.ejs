@@ -14,40 +14,22 @@
                 <h2>Add A Task</h2>
                 <form action = "/additem" method = "POST">
                     <input class = "input" type = "text" name = "todo" id = "description" placeholder = "Description" required>
-                    <input class = "input" type = "date" name = "date" id = "date" placeholder = "Due Date" required>
+                    <input class = "input" type = "date" name = "date" id = "date" placeholder = "Due Date">
+                    <fieldset class = "input dropdown">
+                        <select id = "myList" name = "category">
+                            <option>Select Category</option>
+                            <option>Personal</option>
+                            <option>Work</option>
+                            <option>School</option>
+                            <option>Cleaning</option>
+                            <option>Other</option>
+                        </select>
+                     </fieldset>
                     <button type = "submit" class = "btn">Add Task</button>
                 </form>
             </div>
-            <!-- <ul class = "ul">
-                <li>
-                    <i class="far fa-calendar"></i>
-                    <span>Planned</span>
-                </li>
-                <li>
-                    <i class = "fas fa-clipboard-list"></i>
-                    <span>LISTS</span>
-                    <ul class = "ul lists">
-                        <li>
-                            <i class="fas fa-list-ul"></i>
-                            <span>List 1</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-list-ul"></i>
-                            <span>List 2</span>
-                        </li>
-                        <li class = "addlist">
-                            <i class="fas fa-plus"></i>
-                            <span>Add a list</span>
-                        </li>
-                    </ul>
-                </li>
-            </ul> -->
         </div>
         <div class = "main">
-            <!-- <h1 class = "heading">
-                <i class="far fa-calendar"></i>
-                <span>Planned</span>
-            </h1> -->
             <ul class = "taskslist">
                 <% var today = new Date(); %>
                 <% var dd = today.getDate(); %>
@@ -65,24 +47,40 @@
                   <% return dArr[2]+ "-" +dArr[1]+ "-" +dArr[0] %>
                 <% } %>
                 <% for(let i = 0 ; i < task.length ; i++){ %>
+                    <% if(task[i].date == "undefined-undefined-") { %>
+                        <% task[i].date = "no due date" %>    
+                    <% } %>
                     <% if(task[i].date == today){ %>
                         <li class = "task color-red">
                             <i class="far fa-square"></i>
                             <span><%= task[i].description %></span>
+                            <%if(task[i].category!="Select Category"){ %>
+                                <div class = "category <%= task[i].category %>"><%= task[i].category %></div>
+                            <% }%>
+                            <br>
                             <span class = "date biggerfontsize">TODAY</span>
                         </li>
-                    <% }else if(new Date(reformatDate(task[i].date)) < new Date()){ %>
+                    <% }else if(task[i].date != "no due date" && new Date(reformatDate(task[i].date)) < new Date()){ %>
                         <li class = "task">
                             <i class="far fa-square"></i>
                             <span><%= task[i].description %></span>
+                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                             <span style = "font-family: sans-serif; color:red">DUE DATE PASSED</span>
-                            <span class = "date"><%= task[i].date %></span>
+                            <%if(task[i].category!="Select Category"){ %>
+                                <div class = "category <%= task[i].category %>"><%= task[i].category %></div>
+                            <% }%>
+                            <br>
+                            <span class = "date"><i class="fas fa-calendar-day"></i>&nbsp;&nbsp;<%= task[i].date %></span>
                         </li>
                     <% }else{ %>
                         <li class = "task">
                             <i class="far fa-square"></i>
                             <span><%= task[i].description %></span>
-                            <span class = "date"><%= task[i].date %></span>
+                            <%if(task[i].category!="Select Category"){ %>
+                                <div class = "category <%= task[i].category %>"><%= task[i].category %></div>
+                            <% }%>
+                            <br>
+                            <span class = "date"><i class="fas fa-calendar-day"></i>&nbsp;&nbsp;<%= task[i].date %></span>
                         </li>
                     <% } %>
                 <% } %>
