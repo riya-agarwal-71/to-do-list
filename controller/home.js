@@ -65,6 +65,7 @@ module.exports.deleteitem = function(req,res){
     });
 }
 
+// exporting delete all tasks controller
 module.exports.deletetasks = function(req,res){
     Task.find({deleted:true},function(error,task){
         if(error){

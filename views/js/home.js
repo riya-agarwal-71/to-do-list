@@ -1,4 +1,4 @@
-// g\GETTING TODAYS DATE IN YYYY-MM-DD FORMAT
+// GETTING TODAYS DATE IN YYYY-MM-DD FORMAT
 var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth()+1; //January is 0
@@ -15,8 +15,9 @@ today = yyyy+'-'+mm+'-'+dd;
 var task = document.getElementsByClassName("task");
 
 // SETTING THE MINIMUM VALUE FOR THE DATE INPUT FIELD AS TODAY
-// document.getElementById("date").setAttribute("min", today);
+document.getElementById("date").setAttribute("min", today);
 
+// DIRECTING THE PAGE TO DELETE ALL TASKS WHEN DELETE ALL BUTTON IS CLICKED
 var deleteall = document.getElementById("dltbtn");
 if(deleteall != null){
     deleteall.addEventListener("click",function(){
@@ -32,9 +33,11 @@ for(let i = 0 ; i < li.length ; i++){
         continue;
     }
     child[0].addEventListener("click",function(){
+        // COVERTING THE BOX TO CHECKED BOX ONCE THE TASK IS CLICKED
         let itag = child[0].querySelector(".fas");
         itag.classList.toggle("fa-caret-down");
         itag.classList.toggle("fa-caret-right");
+        // MAKING ALL THE TASKS INVISIBLE
         for(let j = 1 ; j < child.length ; j++){
             child[j].classList.toggle("notvisible");
         }
