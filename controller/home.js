@@ -39,11 +39,41 @@ module.exports.additem = function(req,res){
 // exporting delete items controller
 module.exports.deleteitem = function(req,res){
     let id = req.query.id;
-    Task.findByIdAndDelete(id,function(error){
+    Task.findById(id,function(error,ele){
         if(error){
             console.log("error in deleting the task");
             return;
         }
-        return res.redirect('back');
+        if(!ele.deleted){
+            Task.create({
+                description:ele.description,
+                date:ele.date,
+                category:ele.category,
+                deleted:true
+            },function(error,newTask){
+                if(error){
+                    console.log("error in creating a task");
+                    return;
+                }
+                ele.remove();
+                return res.redirect('back');
+            });
+        }else{
+            ele.remove();
+            return res.redirect('back');
+        }
     });
+}
+
+module.exports.deletetasks = function(req,res){
+    Task.find({deleted:true},function(error,task){
+        if(error){
+            console.log("error in finding");
+            return;
+        }
+        for(t of task){
+            t.remove();
+        }
+        return res.redirect('back');
+    })
 }

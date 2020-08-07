@@ -177,6 +177,37 @@
     display:flex;
     flex-wrap:nowrap;
 }
+.duedateheading{
+    width:25%;
+    height:auto;
+    padding:1%;
+    display:inline-flex;
+    align-items:center;
+    justify-content: space-between;
+    background-color:rgba(2, 2, 2, 0.788);
+    color:white;
+    border-radius:10px;
+    box-shadow:0 0 3px rgb(255, 255, 255);
+    font-weight: lighter;
+    position:relative;
+}
+.notvisible{
+    padding:0;
+    height:0;
+    overflow:hidden;
+    transition: all 0.5s ease-in-out;
+}
+.deleted > .description, .deleted > .date, .deleted > .category{
+    text-decoration:line-through;
+}
+#dltbtn{
+    margin-left:10%;
+    width:auto;
+    height:auto;
+    padding:1%;
+    border:none;
+    border-radius:5px;
+}
 /************ CLASSES FOR DIFFERENT CATEGORIES *****************/
 .category{
     display:inline-block;

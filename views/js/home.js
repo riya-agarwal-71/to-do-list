@@ -11,22 +11,47 @@ if(mm<10){
 } 
 today = yyyy+'-'+mm+'-'+dd;
 
-// SETTING THE MINIMUM VALUE FOR THE DATE INPUT FIELD AS TODAY
-document.getElementById("date").setAttribute("min", today);
-
 // GETTING ALL TASK ELEMENTS (LIST ITEMS)
 var task = document.getElementsByClassName("task");
+
+// SETTING THE MINIMUM VALUE FOR THE DATE INPUT FIELD AS TODAY
+// document.getElementById("date").setAttribute("min", today);
+
+var deleteall = document.getElementById("dltbtn");
+if(deleteall != null){
+    deleteall.addEventListener("click",function(){
+        window.location.href = "/deletealltasks";
+    });
+}
+
+// COLLAPSING THE LISTS ON CLICKING ON HEADING
+var li = document.getElementsByClassName("t");
+for(let i = 0 ; i < li.length ; i++){
+    let child = li[i].children;
+    if(child.length == 0){
+        continue;
+    }
+    child[0].addEventListener("click",function(){
+        let itag = child[0].querySelector(".fas");
+        itag.classList.toggle("fa-caret-down");
+        itag.classList.toggle("fa-caret-right");
+        for(let j = 1 ; j < child.length ; j++){
+            child[j].classList.toggle("notvisible");
+        }
+    })
+}
+
 
 // HANDLING CLICK FUNCTION ON ALL TASK ELEMENTS (LIST ITEMS)
 for(let i = 0 ; i < task.length ; i++){
     task[i].addEventListener("click",function(){
         // COVERTING THE BOX TO CHECKED BOX ONCE THE TASK IS CLICKED
         let itag = task[i].querySelector(".far")
-        itag.classList.toggle("fa-check-square");
-        itag.classList.toggle("fa-square");
+        itag.classList.add("fa-check-square");
+        itag.classList.remove("fa-square");
         var opacity = 100;
         // SELECTING ALL CHILDREN OF THE TASK ITEM CLICKED
-        let allchildren = task[i].children
+        let allchildren = task[i].children;
         // ADDING A CROSS LINE THROUGH ALL CHILDREN BUT THE CHECKBOX OF THE TASK ITEM CLICKED
         for(let i = 1 ; i < allchildren.length ; i++){
             allchildren[i].style.textDecoration = "line-through";
@@ -41,7 +66,7 @@ for(let i = 0 ; i < task.length ; i++){
                 return;
             }
             task[i].style.opacity = opacity + '%';
-            opacity = opacity - 1;
-        },12)
+            opacity = opacity - 2;
+        },7)
     })
 }

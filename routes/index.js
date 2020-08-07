@@ -14,5 +14,7 @@ router.post('/additem',homeController.additem);
 // directing the delete task request to deleteitem function
 router.get('/deletetask/',homeController.deleteitem);
 
+router.get('/deletealltasks',homeController.deletetasks);
+
 // exporting the router
 module.exports = router;

@@ -66,14 +66,14 @@
                   <% dArr = dateStr.split("-") %>
                   <% return dArr[2]+ "-" +dArr[1]+ "-" +dArr[0] %>
                 <% } %>
+                <!------------------ DUE TODAY ----------------------->
+                <div class = "t">
+                <h3 class = "duedateheading">Today<i class = "fas fa-caret-down right"></i></h3>
                 <% for(let i = 0 ; i < task.length ; i++){ %>
                     <% if(task[i].date == "undefined-undefined-") { %>
                         <% task[i].date = "no due date" %>    
                     <% } %>
-
-                    <!------------------ IF TASK DATE IS TODAY ----------------------->
-
-                    <% if(task[i].date == today){ %>
+                    <% if(task[i].date == today && !task[i].deleted){ %>
                         <li class = "task color-red" data-id = "<%= task[i]._id %>">
                             <i class="far fa-square"></i>
                             <span class = "description"><%= task[i].description %></span>
@@ -83,25 +83,17 @@
                             <br>
                             <span class = "date biggerfontsize">TODAY</span>
                         </li>
-
-                    <!-------------------- IF TASK DATE IS ANYTIME BEFORE TODAY --------------------->
-                    
-                    <% }else if(task[i].date != "no due date" && new Date(reformatDate(task[i].date)) < new Date()){ %>
-                        <li class = "task" data-id = "<%= task[i]._id %>">
-                            <i class="far fa-square"></i>
-                            <span class = "description"><%= task[i].description %></span>
-                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                            <span style = "font-family: sans-serif; color:red">DUE DATE PASSED</span>
-                            <%if(task[i].category!="Select Category"){ %>
-                                <div class = "category <%= task[i].category %>"><%= task[i].category %></div>
-                            <% }%>
-                            <br>
-                            <span class = "date"><i class="fas fa-calendar-day"></i>&nbsp;&nbsp;<%= task[i].date %></span>
-                        </li>
-
-                    <!---------------------- IF TASK DATE IS AFTER TODAY ------------------------>
-
-                    <% }else{ %>
+                    <% } %>
+                <% } %>
+                </div>
+                    <!------------------------ DUE AFTER TODAY ------------------------------>
+                    <div class = "t">
+                    <h3 class = "duedateheading">Due Soon<i class = "fas fa-caret-down right"></i></h3>
+                    <% for(let i = 0 ; i < task.length ; i++){ %>
+                        <% if(task[i].date == "undefined-undefined-") { %>
+                            <% task[i].date = "no due date" %>    
+                        <% } %>
+                    <% if(task[i].date != "no due date" && new Date(reformatDate(task[i].date)) > new Date() && !task[i].deleted){ %>
                         <li class = "task" data-id = "<%= task[i]._id %>">
                             <i class="far fa-square"></i>
                             <span class = "description"><%= task[i].description %></span>
@@ -113,6 +105,73 @@
                         </li>
                     <% } %>
                 <% } %>
+                    </div>
+                <!--------------------- NO DUE DATE ------------------------>
+                <div class = "t">
+                <h3 class = "duedateheading">No Due Date<i class = "fas fa-caret-down right"></i></h3>
+                    <% for(let i = 0 ; i < task.length ; i++){ %>
+                        <% if(task[i].date == "undefined-undefined-") { %>
+                            <% task[i].date = "no due date" %>    
+                        <% } %>
+                       
+                    <% if(task[i].date == "no due date" && !task[i].deleted){ %>
+                        <li class = "task" data-id = "<%= task[i]._id %>">
+                            <i class="far fa-square"></i>
+                            <span class = "description"><%= task[i].description %></span>
+                            <% if(task[i].category!="Select Category"){ %>
+                                <div class = "category <%= task[i].category %>"><%= task[i].category %></div>
+                            <% } %>
+                            <br>
+                            <span class = "date"><i class="fas fa-calendar-day"></i>&nbsp;&nbsp;<%= task[i].date %></span>
+                        </li>
+                    <% } %>
+                <% } %>
+                    </div>
+                    <!-------------------- IF DUE DATE PASSED --------------------->
+                    <div class = "t">
+                    <h3 class = "duedateheading">Due date passed<i class = "fas fa-caret-down right"></i></h3>
+                    <% for(let i = 0 ; i < task.length ; i++){ %>
+                        <% if(task[i].date == "undefined-undefined-") { %>
+                            <% task[i].date = "no due date" %>    
+                        <% } %>
+                    <% if(task[i].date != "no due date" && new Date(reformatDate(task[i].date)) < new Date(reformatDate(today)) && !task[i].deleted){ %> 
+                        <li class = "task" data-id = "<%= task[i]._id %>">
+                            <i class="far fa-square"></i>
+                            <span class = "description" style = "color:red"><%= task[i].description %></span>
+                            <%if(task[i].category!="Select Category"){ %>
+                                <div class = "category <%= task[i].category %>"><%= task[i].category %></div>
+                            <% }%>
+                            <br>
+                            <span class = "date" style = "color:red"><i class="fas fa-calendar-day"></i>&nbsp;&nbsp;<%= task[i].date %></span>
+                        </li>
+                        <% } %>
+                    <% } %>
+                    </div>
+                    <!------------------------- COMPLETED TASKS ------------------------>
+                    <div class = "t">
+                        <h3 class = "duedateheading">Completed Tasks<i class = "fas fa-caret-down right"></i></h3>
+                        <% var elementsthere = false %>
+                        <% for(let i = 0 ; i < task.length ; i++){ %>
+                            <% if(task[i].date == "undefined-undefined-") { %>
+                                <% task[i].date = "no due date" %>    
+                            <% } %>
+                        <% if(task[i].deleted){ %>
+                            <% if(!elementsthere){ %>
+                                <button id = "dltbtn">DELETE ALL</button>
+                                <% elementsthere = true %>    
+                            <% } %>
+                            <li class = "task deleted" data-id = "<%= task[i]._id %>">
+                                <i class="far fa-check-square"></i>
+                                <span class = "description"><%= task[i].description %></span>
+                                <%if(task[i].category!="Select Category"){ %>
+                                    <div class = "category <%= task[i].category %>"><%= task[i].category %></div>
+                                <% }%>
+                                <br>
+                                <span class = "date"><i class="fas fa-calendar-day"></i>&nbsp;&nbsp;<%= task[i].date %></span>
+                            </li>
+                            <% } %>
+                        <% } %>
+                    </div>
             </ul>
         </div>
         <!------------------ INCLUDING J-QUERY FILE ---------------------->

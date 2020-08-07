@@ -11,6 +11,10 @@ const taskSchema = new mongoose.Schema({
     },
     category:{
         type:String
+    },
+    deleted:{
+        type:Boolean,
+        default:false
     }
 });
 
